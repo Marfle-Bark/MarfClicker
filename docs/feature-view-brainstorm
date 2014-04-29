@@ -1,0 +1,31 @@
+"Main View"
+  LinearLayout (orientation: vertical)
+    "The Bank"
+      TextView
+        Shows current total
+    "The Cookie"
+      ImageView
+        Increase size by ~10% on ACTION_DOWN
+        Decrease size to normal on ACTION_UP
+        Click listener for registering the all-important cookie clicks
+    "Popup Numbers"
+      TextViews
+        Pre-inflate sufficient number of TextViews
+        Offset pre-determined random amounts or dynamically generate offsets on-the-fly?
+    "Income"
+      TextView
+        Shows current income per-second
+    LinearLayout (orientation: horizontal)
+      LinearLayout (orientation: vertical) (for keys)
+      LinearLayout (orientation: vertical) (for values)
+      "Upgrade Shop": think about how this is going to be structured!
+          Can probably get away with TextView + Drawable for each menu item
+            Wrap in ShapeDrawable to look all purty-like (via background)
+          Wrap entire LinearLayout in ShapeDrawable to give coherent border
+          Slide-in/out via animation when player clicks "grab tab"
+            Also slide-out if player clicks cookie
+          Slide-in covers Stats View
+    Possible ad bar! :D
+-----
+
+Implementation Priority
