@@ -1,0 +1,9 @@
+.DS_Store
+.directory
+
+###don't upload unsaved, changed files
+*.*~
+
+###don't upload bin or gen folders
+/bin
+/gen
