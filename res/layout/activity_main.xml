@@ -20,8 +20,6 @@
         <TextView
             android:id="@+id/bank"
             style="@style/text.large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="bank" />
@@ -37,8 +35,6 @@
         <TextView
             android:id="@+id/income"
             style="@style/text.large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="income" />
@@ -89,6 +85,7 @@
     <TextView
         android:id="@+id/advert"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#FFFFFFFF"

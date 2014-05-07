@@ -1,37 +1,31 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-        <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        -->
-    </style>
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
+    <style name="AppTheme" parent="AppBaseTheme"></style>
 
+    <!-- Parent style for text of all sorts -->
     <style name="text">
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">10dp</item>
-    </style> <!-- Styles all text with a font -->
+        <item name="android:textSize">15dp</item>
+    </style>
 
+    <!-- Subset of text for bank/income -->
     <style name="text.large" parent="style/text">
         <item name="android:textSize">30dp</item>
-    </style> <!-- Subset of text for bank/income -->
+    </style>
 
+    <!-- Subset of text for row labels -->
     <style name="text.label" parent="style/text">
-        <item name="android:textSize"></item>
-    </style> <!-- Subset of text for row labels -->
+        <item name="android:layout_gravity">right</item>
+    </style>
 
-    <style name="text.data" parent="style/text"></style> <!-- Subset of text for row data -->
+    <!-- Subset of text for row data -->
+    <style name="text.data" parent="style/text">
+        <item name="android:layout_gravity">left</item>
+        <item name="android:paddingLeft">4dp</item>
+    </style>
 
 </resources>
