@@ -1,8 +1,7 @@
 package com.whitepaw.marfclicker;
 
 public abstract class MarfNumbers {
-
-	// only setting these to zero for testing
+	
 	private static int alltime = 0;
 	private static int bank = 0;
 	private static int income = 0;

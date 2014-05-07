@@ -16,5 +16,8 @@
     <string name="income">income</string>
     <string name="over9k">>9000</string>
     <string name="buy">Buy</string>
+    <string name="description">Description</string>
+    <string name="boost">Boost</string>
+    <string name="price">Price</string>
 
 </resources>

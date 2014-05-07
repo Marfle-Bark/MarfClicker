@@ -7,6 +7,8 @@
     <Button
         android:id="@+id/buy"
         style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -17,22 +19,41 @@
 
     <TextView
         android:id="@+id/shop_label"
-        style="@style/text.label"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/buy"
         android:gravity="center"
-        android:text="Item Description" >
+        android:text="@string/description" >
     </TextView>
 
     <TextView
-        android:id="@+id/shop_price"
-        style="@style/text.data"
+        android:id="@+id/shop_boost"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/shop_price"
+        android:gravity="center"
+        android:text="@string/boost" >
+    </TextView>
+
+    <TextView
+        android:id="@id/shop_price"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
         android:gravity="center"
-        android:text="Item Price" >
+        android:text="@string/price" >
     </TextView>
 
 </RelativeLayout>

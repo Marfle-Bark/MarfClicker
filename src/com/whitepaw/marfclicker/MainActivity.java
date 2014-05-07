@@ -1,5 +1,6 @@
 package com.whitepaw.marfclicker;
 
+import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -46,6 +47,8 @@ public class MainActivity extends Activity {
 		mShopButton = (Button) findViewById(R.id.shop);
 		mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mShopContent = (ListView) findViewById(R.id.shop_content);
+		
+		ArrayList<ShopItem> list = setupShopItems();
 
 		// handles for stats data column
 		mTotal = (TextView) findViewById(R.id.stats_values_total);
@@ -194,6 +197,12 @@ public class MainActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public ArrayList<ShopItem> setupShopItems() {
+		ArrayList<ShopItem> list = new ArrayList<ShopItem>();
+		list.add(new ShopItem("Puppy", 10, 1));
+		return list;
 	}
 
 }
