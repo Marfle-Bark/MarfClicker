@@ -3,7 +3,7 @@
 
     <string name="app_name">MarfClicker</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="devname">Developed by Ethan Busbee</string>
     <string name="advert">Tap to reset Marfs (debug)</string>
     <string name="marfle_bark">Marfle Bark</string>
     <string name="total_marfs">Total Marfs:</string>
