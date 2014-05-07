@@ -6,12 +6,14 @@
     <string name="devname">Developed by Ethan Busbee</string>
     <string name="advert">Tap to reset Marfs (debug)</string>
     <string name="marfle_bark">Marfle Bark</string>
-    <string name="total_marfs">Total Marfs:</string>
+    <string name="total_marfs">All-Time Total Marfs:</string>
+    <string name="shop">Upgrade Shop</string>
 
     <!-- SharedPreferences Strings -->
     <string name="store">MarfNumbersStore</string>
     <string name="alltime">alltime</string>
     <string name="bank">bank</string>
     <string name="income">income</string>
+    <string name="over9k">>9000</string>
 
 </resources>

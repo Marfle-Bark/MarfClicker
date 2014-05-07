@@ -5,12 +5,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,9 @@ public class MainActivity extends Activity {
 	private TextView mIncome = null;
 	private TextView mAdvert = null;
 	private TextView mTotal = null;
+	private Button mShopButton = null;
+	private DrawerLayout mShopDrawer = null;
+	private ListView mShopContent = null;
 
 	private Context context = null;
 	private SharedPreferences prefs = null;
@@ -37,6 +43,9 @@ public class MainActivity extends Activity {
 		mHusky = (ImageView) findViewById(R.id.husky);
 		mIncome = (TextView) findViewById(R.id.income);
 		mAdvert = (TextView) findViewById(R.id.advert);
+		mShopButton = (Button) findViewById(R.id.shop);
+		mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mShopContent = (ListView) findViewById(R.id.shop_content);
 
 		// handles for stats data column
 		mTotal = (TextView) findViewById(R.id.stats_values_total);
@@ -87,6 +96,15 @@ public class MainActivity extends Activity {
 				mHusky.setScaleY(1.0f);
 				MarfNumbers.reset();
 				updateFields();
+				return true;
+			}
+		});
+
+		mShopButton.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				shortToast("TESTING");
 				return false;
 			}
 		});
