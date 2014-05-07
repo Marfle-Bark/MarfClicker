@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:background="#FF000000" >
+
+    <Button
+        android:id="@+id/buy"
+        style="@style/text"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="8dp"
+        android:enabled="false"
+        android:text="@string/buy" >
+    </Button>
+
+    <TextView
+        android:id="@+id/shop_label"
+        style="@style/text.label"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/buy"
+        android:gravity="center"
+        android:text="Item Description" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/shop_price"
+        style="@style/text.data"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="Item Price" >
+    </TextView>
+
+</RelativeLayout>

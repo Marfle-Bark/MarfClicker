@@ -15,5 +15,6 @@
     <string name="bank">bank</string>
     <string name="income">income</string>
     <string name="over9k">>9000</string>
+    <string name="buy">Buy</string>
 
 </resources>
