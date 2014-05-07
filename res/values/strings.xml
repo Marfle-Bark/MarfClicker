@@ -8,4 +8,10 @@
     <string name="marfle_bark">Marfle Bark</string>
     <string name="total_marfs">Total Marfs:</string>
 
+    <!-- SharedPreferences Strings -->
+    <string name="store">MarfNumbersStore</string>
+    <string name="alltime">alltime</string>
+    <string name="bank">bank</string>
+    <string name="income">income</string>
+
 </resources>

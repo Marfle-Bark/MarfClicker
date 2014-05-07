@@ -2,6 +2,7 @@ package com.whitepaw.marfclicker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 
 	private Context context = null;
+	private SharedPreferences prefs = null;
 
 	private TextView mBank = null;
 	private ImageView mHusky = null;
@@ -27,8 +29,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		context = getApplicationContext();
-
 		// handles for main views
 		mBank = (TextView) findViewById(R.id.bank);
 		mHusky = (ImageView) findViewById(R.id.husky);
@@ -37,9 +37,9 @@ public class MainActivity extends Activity {
 
 		// handles for stats data column
 		mTotal = (TextView) findViewById(R.id.stats_values_total);
-
-		mBank.setText(MarfNumbers.getBankString());
-		mIncome.setText(MarfNumbers.getIncomeString());
+		
+		context = getApplicationContext();
+		prefs = getPreferences(Context.MODE_PRIVATE);
 
 		mHusky.setOnTouchListener(new OnTouchListener() {
 
@@ -77,6 +77,18 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		saveData();
+	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		loadData();
+	}
+	
 	public void updateFields() {
 		mBank.setText(MarfNumbers.getBankString());
 		mIncome.setText(MarfNumbers.getIncomeString());
@@ -84,11 +96,23 @@ public class MainActivity extends Activity {
 	}
 
 	public void saveData() {
-
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putInt(getString(R.string.alltime), MarfNumbers.getAlltime());
+		editor.putInt(getString(R.string.bank), MarfNumbers.getBank());
+		editor.putInt(getString(R.string.income), MarfNumbers.getIncome());
+		editor.commit();
 	}
 
 	public void loadData() {
-
+		int alltime = prefs.getInt(getString(R.string.alltime), 0);
+		int bank = prefs.getInt(getString(R.string.bank), 0);
+		int income = prefs.getInt(getString(R.string.income), 0);
+		
+		MarfNumbers.setAlltime(alltime);
+		MarfNumbers.setBank(bank);
+		MarfNumbers.setIncome(income);
+		
+		updateFields();
 	}
 
 	@Override
