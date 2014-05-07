@@ -44,17 +44,16 @@ public class MainActivity extends Activity {
 		// other handles to important things
 		context = getApplicationContext();
 		prefs = getPreferences(Context.MODE_PRIVATE);
-		
-		
+
 		handler = new Handler();
 		updateUI = new Runnable() {
-		    public void run() {
-		        MarfNumbers.applyIncome();
-		        updateFields();
-		        handler.postDelayed(updateUI, 1000); // 1 second delay
-		        }
-		    };
-		
+			public void run() {
+				MarfNumbers.applyIncome();
+				updateFields();
+				handler.postDelayed(updateUI, 1000); // 1 second delay
+			}
+		};
+
 		handler.post(updateUI);
 
 		// main touch listener that powers the app
@@ -83,8 +82,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				Toast.makeText(context, "Reset Desu", Toast.LENGTH_SHORT)
-						.show();
+				shortToast("Reset Desu");
 				mHusky.setScaleX(1.0f);
 				mHusky.setScaleY(1.0f);
 				MarfNumbers.reset();
@@ -105,14 +103,24 @@ public class MainActivity extends Activity {
 		super.onResume();
 		loadData();
 	}
-	
-	
 
 	public void updateFields() {
-		//temporary way of increasing income
+		// temporary way of increasing income
 		switch (MarfNumbers.getAlltime()) {
+		case 50:
+			MarfNumbers.increaseIncome(1);
+			break;
 		case 100:
 			MarfNumbers.increaseIncome(1);
+			break;
+		case 200:
+			MarfNumbers.increaseIncome(2);
+			break;
+		case 400:
+			MarfNumbers.increaseIncome(3);
+			break;
+		case 800:
+			MarfNumbers.increaseIncome(4);
 			break;
 		}
 
@@ -141,6 +149,14 @@ public class MainActivity extends Activity {
 		updateFields();
 	}
 
+	public void longToast(String message) {
+		Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+	}
+
+	public void shortToast(String message) {
+		Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -156,8 +172,7 @@ public class MainActivity extends Activity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.devname) {
-			Toast.makeText(getApplicationContext(),
-					"MarfClicker ©2014 Ethan Busbee", Toast.LENGTH_LONG).show();
+			longToast("MarfClicker ©2014 Ethan Busbee");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
