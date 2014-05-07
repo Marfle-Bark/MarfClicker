@@ -47,6 +47,11 @@ public abstract class MarfNumbers {
 		bank += income;
 		alltime += income;
 	}
+	
+	public static void increaseIncome(int input)
+	{
+		income += input;
+	}
 
 	public static void addToBank(int input) {
 		bank += input;

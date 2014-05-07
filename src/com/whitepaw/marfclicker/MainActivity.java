@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -15,14 +16,16 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-	private Context context = null;
-	private SharedPreferences prefs = null;
-
 	private TextView mBank = null;
 	private ImageView mHusky = null;
 	private TextView mIncome = null;
 	private TextView mAdvert = null;
 	private TextView mTotal = null;
+
+	private Context context = null;
+	private SharedPreferences prefs = null;
+	private Handler handler = null;
+	private Runnable updateUI = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,24 @@ public class MainActivity extends Activity {
 
 		// handles for stats data column
 		mTotal = (TextView) findViewById(R.id.stats_values_total);
-		
+
+		// other handles to important things
 		context = getApplicationContext();
 		prefs = getPreferences(Context.MODE_PRIVATE);
+		
+		
+		handler = new Handler();
+		updateUI = new Runnable() {
+		    public void run() {
+		        MarfNumbers.applyIncome();
+		        updateFields();
+		        handler.postDelayed(updateUI, 1000); // 1 second delay
+		        }
+		    };
+		
+		handler.post(updateUI);
 
+		// main touch listener that powers the app
 		mHusky.setOnTouchListener(new OnTouchListener() {
 
 			@Override
@@ -82,14 +99,23 @@ public class MainActivity extends Activity {
 		super.onPause();
 		saveData();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		loadData();
 	}
 	
+	
+
 	public void updateFields() {
+		//temporary way of increasing income
+		switch (MarfNumbers.getAlltime()) {
+		case 100:
+			MarfNumbers.increaseIncome(1);
+			break;
+		}
+
 		mBank.setText(MarfNumbers.getBankString());
 		mIncome.setText(MarfNumbers.getIncomeString());
 		mTotal.setText(String.valueOf(MarfNumbers.getAlltime()));
@@ -107,11 +133,11 @@ public class MainActivity extends Activity {
 		int alltime = prefs.getInt(getString(R.string.alltime), 0);
 		int bank = prefs.getInt(getString(R.string.bank), 0);
 		int income = prefs.getInt(getString(R.string.income), 0);
-		
+
 		MarfNumbers.setAlltime(alltime);
 		MarfNumbers.setBank(bank);
 		MarfNumbers.setIncome(income);
-		
+
 		updateFields();
 	}
 
