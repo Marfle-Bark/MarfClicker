@@ -26,6 +26,31 @@
             Also slide-out if player clicks cookie
           Slide-in covers Stats View
     Possible ad bar! :D
+      Leave as View, background=@color/white
+
+-----
+
+Design Notes
+
+Consider moving Income to same line as Bank so that menuing has more real-estate?
+
 -----
 
 Implementation Priority
+
+0: Gameplay-crucial
+  Cookie (image + clicking)
+  Bank (count)
+  Upgrade Shop (cursor/clicker upgrades only, no animation, shapedrawable background on entire shop + individual item)
+
+1: Gameplay-important
+  Income (count per second)
+  Stats key/value columns
+  Upgrade Shop (3-5 total upgrades, no animation)
+
+2: Polish
+  Cookie "pop" on clicking cookie
+  Slide-in upgrade shop on clicking grab-tab
+  Slide-out upgrade shop on clicking grab-tab while open and if cookie is clicked (use a bool for "the shop is open right now"?)
+  Bank/Income numbers truncated to look pretty
+  Add "popup numbers" on clicking cookie
