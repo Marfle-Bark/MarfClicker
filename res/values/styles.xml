@@ -24,12 +24,14 @@
         <item name="android:textSize">10dp</item>
     </style> <!-- Styles all text with a font -->
 
-    <style name="text.large">
+    <style name="text.large" parent="style/text">
         <item name="android:textSize">30dp</item>
     </style> <!-- Subset of text for bank/income -->
 
-    <style name="text.label"></style> <!-- Subset of text for row labels -->
+    <style name="text.label" parent="style/text">
+        <item name="android:textSize"></item>
+    </style> <!-- Subset of text for row labels -->
 
-    <style name="text.data"></style> <!-- Subset of text for row data -->
+    <style name="text.data" parent="style/text"></style> <!-- Subset of text for row data -->
 
 </resources>

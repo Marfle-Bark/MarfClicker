@@ -66,8 +66,8 @@
 
             <TextView
                 android:id="@+id/stats_labels_total"
-                android:style="@style/text.label"
-                android:text="Total Marfs:" />
+                style="@style/text.label"
+                android:text="@string/total_marfs" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,10 +80,9 @@
 
             <TextView
                 android:id="@+id/stats_values_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/text.data"
                 android:text=">9000"
-                android:textColor="#FFFFFFFF" />
+                />
         </LinearLayout>
     </LinearLayout>
 
