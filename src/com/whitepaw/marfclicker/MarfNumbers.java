@@ -89,16 +89,19 @@ public abstract class MarfNumbers {
 	public static void buyPuppy(int price) {
 		puppies++;
 		increaseIncome(1);
+		spendMarfs(price);
 	}
 
 	public static void buyHusky(int price) {
 		huskies++;
 		increaseIncome(3);
+		spendMarfs(price);
 	}
 
 	public static void buyRoboski(int price) {
 		roboskis++;
 		increaseIncome(7);
+		spendMarfs(price);
 	}
 
 	public static void spendMarfs(int price) {

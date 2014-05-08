@@ -1,7 +1,7 @@
 package com.whitepaw.marfclicker;
 
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +49,7 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 			@Override
 			public void onClick(View v) {
 				MarfNumbers.buySomething(values[position]);
+				
 			}
 		});
 		

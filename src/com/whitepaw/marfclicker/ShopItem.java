@@ -11,24 +11,33 @@ public final class ShopItem {
 		PUPPY, HUSKY, ROBOSKI
 	}
 
-	public ShopItem(ShopItem.classes classification, int price, int boost) {
+	public ShopItem(ShopItem.classes classification) {
 		this.classification = classification;
-		this.price = price;
-		this.initial_price = price;
-		this.boost = boost;
 
 		switch (this.classification) {
 		case PUPPY:
 			this.description = "Puppy";
+			this.price = 1;
+			this.initial_price = 1;
+			this.boost = 1;
 			break;
 		case HUSKY:
 			this.description = "Husky";
+			this.price = 100;
+			this.initial_price = 100;
+			this.boost = 3;
 			break;
 		case ROBOSKI:
 			this.description = "RoboDoge";
+			this.price = 1000;
+			this.initial_price = 1000;
+			this.boost = 7;
 			break;
 		default:
 			this.description = "Broken :c";
+			this.price = 99999;
+			this.initial_price = 99999;
+			this.boost = 0;
 			break;
 		}
 	}

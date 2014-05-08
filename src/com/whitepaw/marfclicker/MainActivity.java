@@ -11,8 +11,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+//import android.widget.AdapterView;
+//import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -135,13 +135,13 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		mShopListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				shortToast("position: " + position);
-			}
-		});
+//		mShopListView.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				shortToast("position: " + position);
+//			}
+//		});
 	}
 
 	@Override
@@ -175,11 +175,11 @@ public class MainActivity extends Activity {
 		editor.putInt(getString(R.string.bank), MarfNumbers.getBank());
 		editor.putInt(getString(R.string.income), MarfNumbers.getIncome());
 		editor.putInt(getString(R.string.puppies), MarfNumbers.getPuppies());
-		editor.putInt(getString(R.string.puppiesPrice), 0);
+		editor.putInt(getString(R.string.puppiesPrice), values[0].getPrice());
 		editor.putInt(getString(R.string.huskies), MarfNumbers.getHuskies());
-		editor.putInt(getString(R.string.huskiesPrice), 0);
+		editor.putInt(getString(R.string.huskiesPrice), values[1].getPrice());
 		editor.putInt(getString(R.string.roboskis), MarfNumbers.getRoboskis());
-		editor.putInt(getString(R.string.roboskisPrice), 0);
+		editor.putInt(getString(R.string.roboskisPrice), values[2].getPrice());
 		editor.commit();
 	}
 
@@ -238,9 +238,9 @@ public class MainActivity extends Activity {
 	}
 
 	public ShopItem[] setupShopItems() {
-		ShopItem puppy = new ShopItem(ShopItem.classes.PUPPY, 10, 1);
-		ShopItem husky = new ShopItem(ShopItem.classes.HUSKY, 100, 3);
-		ShopItem roboski = new ShopItem(ShopItem.classes.ROBOSKI, 1000, 7);
+		ShopItem puppy = new ShopItem(ShopItem.classes.PUPPY);
+		ShopItem husky = new ShopItem(ShopItem.classes.HUSKY);
+		ShopItem roboski = new ShopItem(ShopItem.classes.ROBOSKI);
 		ShopItem arr[] = new ShopItem[] { puppy, husky, roboski };
 		return arr;
 	}
