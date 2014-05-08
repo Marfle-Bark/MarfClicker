@@ -4,12 +4,17 @@
     <string name="app_name">MarfClicker</string>
     <string name="hello_world">Hello world!</string>
     <string name="devname">Developed by Ethan Busbee</string>
-    <string name="advert">Tap to reset Marfs (debug)</string>
+    <string name="advert">Tap to reset game (debug)</string>
     <string name="marfle_bark">Marfle Bark</string>
-    <string name="total_marfs">All-Time Total Marfs:</string>
+    <string name="puppies">Puppies:</string>
+    <string name="huskies">Huskies:</string>
+    <string name="roboskis">RoboDoges:</string>
     <string name="banked_marfs">Banked Marfs:</string>
+    <string name="total_marfs">All-Time Total Marfs:</string>
     <string name="time">Time Since Reset:</string>
-    <string name="shop">Upgrade Shop</string>
+    <string name="shop">Open Shop</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
     <!-- SharedPreferences Strings -->
     <string name="store">MarfNumbersStore</string>

@@ -1,6 +1,5 @@
 package com.whitepaw.marfclicker;
 
-import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +12,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,12 +26,17 @@ public class MainActivity extends Activity {
 	private ImageView mHusky = null;
 	private TextView mIncome = null;
 	private TextView mAdvert = null;
-	private TextView mTotal_value = null;
+	
+	private TextView mPuppies = null;
+	private TextView mHuskies = null;
+	private TextView mRoboskis = null;
 	private TextView mBank_value = null;
+	private TextView mTotal_value = null;
+	
 	private Button mShopButton = null;
-
-	// private DrawerLayout mShopDrawer = null;
-	// private ListView mShopContent = null;
+	private DrawerLayout mShopDrawer = null;
+	private ListView mShopListView = null;
+	private MarfArrayAdapter adapter = null;
 
 	private Context context = null;
 	private SharedPreferences prefs = null;
@@ -47,17 +53,23 @@ public class MainActivity extends Activity {
 		mHusky = (ImageView) findViewById(R.id.husky);
 		mIncome = (TextView) findViewById(R.id.income);
 		mAdvert = (TextView) findViewById(R.id.advert);
-		mShopButton = (Button) findViewById(R.id.shop);
-		// mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-		// mShopContent = (ListView) findViewById(R.id.shop_content);
 
-		// ListView listView = (ListView) findViewById(R.layout.shop_content);
-
-		// ArrayList<ShopItem> list = setupShopItems();
+		// Setup Upgrade Shop Drawer, ListView, etc.
+		mShopButton = (Button) findViewById(R.id.shop_button);
+		mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mShopListView = (ListView) findViewById(R.id.shop_content_listview);
+		
+		ShopItem values[] = setupShopItems();
+		adapter = new MarfArrayAdapter(this, R.layout.shop_item, values);
+		mShopListView.setAdapter(adapter);
+		mShopListView.setOnItemClickListener(new DrawerItemClickListener());
 
 		// handles for stats data column
-		mTotal_value = (TextView) findViewById(R.id.stats_values_total);
+		mPuppies = (TextView) findViewById(R.id.stats_values_puppies);
+		mHuskies = (TextView) findViewById(R.id.stats_values_huskies);
+		mRoboskis = (TextView) findViewById(R.id.stats_values_roboskis);
 		mBank_value = (TextView) findViewById(R.id.stats_values_banked);
+		mTotal_value = (TextView) findViewById(R.id.stats_values_total);
 
 		// other handles to important things
 		context = getApplicationContext();
@@ -113,8 +125,16 @@ public class MainActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				shortToast("TESTING");
+				mShopDrawer.openDrawer(mShopListView);
 				return false;
+			}
+		});
+
+		mShopListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				shortToast("position: " + position);
 			}
 		});
 	}
@@ -131,34 +151,17 @@ public class MainActivity extends Activity {
 		loadData();
 	}
 
-	public void debug_upgrades() {
-		// temporary way of increasing income
-		switch (MarfNumbers.getAlltime()) {
-		case 50:
-			MarfNumbers.increaseIncome(1);
-			break;
-		case 100:
-			MarfNumbers.increaseIncome(1);
-			break;
-		case 200:
-			MarfNumbers.increaseIncome(2);
-			break;
-		case 400:
-			MarfNumbers.increaseIncome(3);
-			break;
-		case 800:
-			MarfNumbers.increaseIncome(4);
-			break;
-		}
-	}
-
 	public void updateFields() {
-		debug_upgrades();
-
 		mBank.setText(MarfNumbers.getBankString());
 		mIncome.setText(MarfNumbers.getIncomeString());
-		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
+		
+		mPuppies.setText(String.valueOf(MarfNumbers.getPuppies()));
+		mHuskies.setText(String.valueOf(MarfNumbers.getHuskies()));
+		mRoboskis.setText(String.valueOf(MarfNumbers.getRoboskis()));
 		mBank_value.setText(String.valueOf(MarfNumbers.getBank()));
+		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
+		
+		adapter.notifyDataSetChanged();
 	}
 
 	public void saveData() {
@@ -210,10 +213,25 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public ArrayList<ShopItem> setupShopItems() {
-		ArrayList<ShopItem> list = new ArrayList<ShopItem>();
-		list.add(new ShopItem("Puppy", 10, 1));
-		return list;
+	public ShopItem[] setupShopItems() {
+		ShopItem puppy = new ShopItem("Puppy", 10, 1);
+		ShopItem husky = new ShopItem("Husky", 100, 3);
+		ShopItem roboski = new ShopItem("RoboDoge", 1000, 7);
+		ShopItem arr[] = new ShopItem[] {puppy, husky, roboski};
+		return arr;
 	}
 
+	private void selectItem(int position) {
+		mShopListView.setItemChecked(position, true);
+		shortToast("You touched position " + position);
+	}
+
+	private class DrawerItemClickListener implements
+			ListView.OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView parent, View view, int position,
+				long id) {
+			selectItem(position);
+		}
+	}
 }

@@ -3,11 +3,13 @@ package com.whitepaw.marfclicker;
 public final class ShopItem {
 	private final String description;
 	private int price;
+	private int initial_price;
 	private final int boost;
 
 	public ShopItem(String description, int price, int boost) {
 		this.description = description;
 		this.price = price;
+		this.initial_price = price;
 		this.boost = boost;
 	}
 
@@ -25,5 +27,9 @@ public final class ShopItem {
 	
 	public void buy() {
 		price *= 1.5;
+	}
+	
+	public void reset() {
+		price = initial_price;
 	}
 }

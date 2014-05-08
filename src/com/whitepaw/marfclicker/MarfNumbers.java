@@ -1,13 +1,14 @@
 package com.whitepaw.marfclicker;
 
-//import java.util.Calendar;
-
 public abstract class MarfNumbers {
 	
 	private static int alltime = 0;
 	private static int bank = 0;
 	private static int income = 0;
-//	private static Calendar start = Calendar.getInstance(); 
+	
+	private static int puppies = 0;
+	private static int huskies = 0;
+	private static int roboskis = 0;
 
 	//int accessors
 	public static int getAlltime() {
@@ -20,6 +21,18 @@ public abstract class MarfNumbers {
 
 	public static int getIncome() {
 		return income;
+	}
+	
+	public static int getPuppies() {
+		return puppies;
+	}
+	
+	public static int getHuskies() {
+		return huskies;
+	}
+	
+	public static int getRoboskis() {
+		return roboskis;
 	}
 
 	//String accessors
@@ -60,9 +73,25 @@ public abstract class MarfNumbers {
 		alltime += input;
 	}
 	
+	public static void incrementPuppies() {
+		puppies++;
+	}
+	
+	public static void incrementHuskies() {
+		huskies++;
+	}
+	
+	public static void incrementRoboskis() {
+		roboskis++;
+	}
+	
 	public static void reset() {
 		alltime = 0;
 		bank = 0;
 		income = 0;
+		
+		puppies = 0;
+		huskies = 0;
+		roboskis = 0;
 	}
 }
