@@ -1,3 +1,7 @@
+//serves as the core data store for the game while MainActivity is active
+//(this data is written out to SharedPreferences during onPause()
+//and read back in during onResume())
+
 package com.whitepaw.marfclicker;
 
 import android.util.Log;
@@ -89,7 +93,7 @@ public abstract class MarfNumbers {
 		roboskis = input;
 	}
 
-	// increment mutators
+	// increment and other mutators
 	public static void applyIncome() {
 		bank += income;
 		alltime += income;
@@ -107,6 +111,7 @@ public abstract class MarfNumbers {
 			byPaw++;
 	}
 
+	// purchase-related methods
 	public static void buyPuppy(int price) {
 		puppies++;
 		increaseIncome(1);
@@ -129,18 +134,6 @@ public abstract class MarfNumbers {
 		bank -= price;
 	}
 
-	public static void reset() {
-		alltime = 0;
-		bank = 0;
-		income = 0;
-		byPaw = 0;
-		byIncome = 0;
-
-		puppies = 0;
-		huskies = 0;
-		roboskis = 0;
-	}
-
 	public static void buySomething(ShopItem item) {
 		switch (item.getClassification()) {
 		case PUPPY:
@@ -159,5 +152,18 @@ public abstract class MarfNumbers {
 		}
 
 		item.buy();
+	}
+
+	// resets the state of MarfNumbers
+	public static void reset() {
+		alltime = 0;
+		bank = 0;
+		income = 0;
+		byPaw = 0;
+		byIncome = 0;
+
+		puppies = 0;
+		huskies = 0;
+		roboskis = 0;
 	}
 }

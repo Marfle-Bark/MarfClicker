@@ -1,3 +1,5 @@
+//Subclass of ArrayAdapter for ShopItem objects
+
 package com.whitepaw.marfclicker;
 
 import android.content.Context;
@@ -27,13 +29,12 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View row = convertView;
 
+		//only inflate if we need to
 		if (row == null) {
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			row = inflater.inflate(layoutResourceId, parent, false);
 		}
-
-		Button buy = (Button) row.findViewById(R.id.buy);
 
 		TextView description = (TextView) row.findViewById(R.id.shop_label);
 		description.setText(values[position].getDescription());
@@ -44,6 +45,7 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 		TextView price = (TextView) row.findViewById(R.id.shop_price);
 		price.setText("Cost: -" + values[position].getPrice());
 		
+		Button buy = (Button) row.findViewById(R.id.buy);
 		buy.setOnClickListener(new OnClickListener() {
 			
 			@Override

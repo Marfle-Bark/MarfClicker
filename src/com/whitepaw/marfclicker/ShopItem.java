@@ -1,3 +1,5 @@
+//Represents the data needed for an item in the Upgrade Shop
+
 package com.whitepaw.marfclicker;
 
 public final class ShopItem {
