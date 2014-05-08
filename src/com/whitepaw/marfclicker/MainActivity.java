@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 	private TextView mPuppies = null;
 	private TextView mHuskies = null;
 	private TextView mRoboskis = null;
+	private TextView mFromTouches = null;
+	private TextView mFromIncome = null;
 	private TextView mBank_value = null;
 	private TextView mTotal_value = null;
 
@@ -67,6 +69,8 @@ public class MainActivity extends Activity {
 		mPuppies = (TextView) findViewById(R.id.stats_values_puppies);
 		mHuskies = (TextView) findViewById(R.id.stats_values_huskies);
 		mRoboskis = (TextView) findViewById(R.id.stats_values_roboskis);
+		mFromTouches = (TextView) findViewById(R.id.stats_values_byPaw);
+		mFromIncome = (TextView) findViewById(R.id.stats_values_byIncome);
 		mBank_value = (TextView) findViewById(R.id.stats_values_banked);
 		mTotal_value = (TextView) findViewById(R.id.stats_values_total);
 
@@ -95,7 +99,7 @@ public class MainActivity extends Activity {
 				case MotionEvent.ACTION_DOWN:
 					mHusky.setScaleX(1.2f);
 					mHusky.setScaleY(1.2f);
-					MarfNumbers.addToBank(1);
+					MarfNumbers.addToBank(1, true);
 					updateFields();
 					break;
 				case MotionEvent.ACTION_UP:
@@ -146,6 +150,8 @@ public class MainActivity extends Activity {
 		mPuppies.setText(String.valueOf(MarfNumbers.getPuppies()));
 		mHuskies.setText(String.valueOf(MarfNumbers.getHuskies()));
 		mRoboskis.setText(String.valueOf(MarfNumbers.getRoboskis()));
+		mFromTouches.setText(String.valueOf(MarfNumbers.getByPaw()));
+		mFromIncome.setText(String.valueOf(MarfNumbers.getByIncome()));
 		mBank_value.setText(String.valueOf(MarfNumbers.getBank()));
 		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
 
@@ -171,12 +177,16 @@ public class MainActivity extends Activity {
 		editor.putInt(getString(R.string.alltime), MarfNumbers.getAlltime());
 		editor.putInt(getString(R.string.bank), MarfNumbers.getBank());
 		editor.putInt(getString(R.string.income), MarfNumbers.getIncome());
+		editor.putInt(getString(R.string.byPaw), MarfNumbers.getByPaw());
+		editor.putInt(getString(R.string.byIncome), MarfNumbers.getByIncome());
+		
 		editor.putInt(getString(R.string.puppies), MarfNumbers.getPuppies());
 		editor.putInt(getString(R.string.puppiesPrice), values[0].getPrice());
 		editor.putInt(getString(R.string.huskies), MarfNumbers.getHuskies());
 		editor.putInt(getString(R.string.huskiesPrice), values[1].getPrice());
 		editor.putInt(getString(R.string.roboskis), MarfNumbers.getRoboskis());
 		editor.putInt(getString(R.string.roboskisPrice), values[2].getPrice());
+		
 		editor.commit();
 	}
 
@@ -184,6 +194,9 @@ public class MainActivity extends Activity {
 		int alltime = prefs.getInt(getString(R.string.alltime), 0);
 		int bank = prefs.getInt(getString(R.string.bank), 0);
 		int income = prefs.getInt(getString(R.string.income), 0);
+		int byPaw = prefs.getInt(getString(R.string.byPaw), 0);
+		int byIncome = prefs.getInt(getString(R.string.byIncome), 0);
+		
 		int puppies = prefs.getInt(getString(R.string.puppies), 0);
 		int puppiesPrice = prefs.getInt(getString(R.string.puppiesPrice), 10);
 		int huskies = prefs.getInt(getString(R.string.huskies), 0);
@@ -202,6 +215,9 @@ public class MainActivity extends Activity {
 		MarfNumbers.setAlltime(alltime);
 		MarfNumbers.setBank(bank);
 		MarfNumbers.setIncome(income);
+		MarfNumbers.setByPaw(byPaw);
+		MarfNumbers.setByIncome(byIncome);
+		
 		MarfNumbers.setPuppies(puppies);
 		values[0].setPrice(puppiesPrice);
 		MarfNumbers.setHuskies(huskies);

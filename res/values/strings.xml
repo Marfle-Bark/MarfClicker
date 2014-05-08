@@ -15,11 +15,13 @@
     <string name="shop">Open Shop</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-	<string name="buy">Buy</string>
+    <string name="buy">Buy</string>
     <string name="description">Description</string>
     <string name="boost">Boost</string>
     <string name="price">Price</string>
-    
+    <string name="marfs_byPaw">Marfs from Touches:</string>
+    <string name="marfs_byIncome">Marfs from Income:</string>
+
     <!-- SharedPreferences Strings -->
     <string name="store">MarfNumbersStore</string>
     <string name="alltime">alltime</string>
@@ -29,6 +31,7 @@
     <string name="puppiesPrice">puppiesPrice</string>
     <string name="huskiesPrice">huskiesPrice</string>
     <string name="roboskisPrice">roboskisPrice</string>
-    
+    <string name="byPaw">byPaw</string>
+    <string name="byIncome">byIncome</string>
 
 </resources>

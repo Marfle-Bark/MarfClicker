@@ -7,6 +7,8 @@ public abstract class MarfNumbers {
 	private static int alltime = 0;
 	private static int bank = 0;
 	private static int income = 0;
+	private static int byPaw = 0;
+	private static int byIncome = 0;
 
 	private static int puppies = 0;
 	private static int huskies = 0;
@@ -23,6 +25,14 @@ public abstract class MarfNumbers {
 
 	public static int getIncome() {
 		return income;
+	}
+
+	public static int getByPaw() {
+		return byPaw;
+	}
+
+	public static int getByIncome() {
+		return byIncome;
 	}
 
 	public static int getPuppies() {
@@ -59,6 +69,14 @@ public abstract class MarfNumbers {
 		income = input;
 	}
 
+	public static void setByPaw(int input) {
+		byPaw = input;
+	}
+
+	public static void setByIncome(int input) {
+		byIncome = input;
+	}
+
 	public static void setPuppies(int input) {
 		puppies = input;
 	}
@@ -75,15 +93,18 @@ public abstract class MarfNumbers {
 	public static void applyIncome() {
 		bank += income;
 		alltime += income;
+		byIncome += income;
 	}
 
 	public static void increaseIncome(int input) {
 		income += input;
 	}
 
-	public static void addToBank(int input) {
+	public static void addToBank(int input, boolean fromHusky) {
 		bank += input;
 		alltime += input;
+		if (fromHusky)
+			byPaw++;
 	}
 
 	public static void buyPuppy(int price) {
@@ -112,6 +133,8 @@ public abstract class MarfNumbers {
 		alltime = 0;
 		bank = 0;
 		income = 0;
+		byPaw = 0;
+		byIncome = 0;
 
 		puppies = 0;
 		huskies = 0;

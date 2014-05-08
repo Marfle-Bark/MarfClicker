@@ -100,6 +100,18 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/stats_labels_byPaw"
+                    style="@style/text.label"
+                    android:text="@string/marfs_byPaw" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/stats_labels_income"
+                    style="@style/text.label"
+                    android:text="@string/marfs_byIncome" >
+                </TextView>
+
+                <TextView
                     android:id="@+id/stats_labels_banked"
                     style="@style/text.label"
                     android:text="@string/banked_marfs" >
@@ -126,21 +138,33 @@
                 <TextView
                     android:id="@+id/stats_values_puppies"
                     style="@style/text.data"
-                    android:text="@string/puppies" >
+                    android:text="@string/over9k" >
                 </TextView>
 
                 <TextView
                     android:id="@+id/stats_values_huskies"
                     style="@style/text.data"
-                    android:text="@string/huskies" >
+                    android:text="@string/over9k" >
                 </TextView>
 
                 <TextView
                     android:id="@+id/stats_values_roboskis"
                     style="@style/text.data"
-                    android:text="@string/roboskis" >
+                    android:text="@string/over9k" >
                 </TextView>
                 
+                <TextView
+                    android:id="@+id/stats_values_byPaw"
+                    style="@style/text.data"
+                    android:text="@string/over9k" >
+                </TextView>
+                
+                <TextView
+                    android:id="@+id/stats_values_byIncome"
+                    style="@style/text.data"
+                    android:text="@string/over9k" >
+                </TextView>
+
                 <TextView
                     android:id="@+id/stats_values_banked"
                     style="@style/text.data"
