@@ -7,6 +7,8 @@
     <string name="advert">Tap to reset Marfs (debug)</string>
     <string name="marfle_bark">Marfle Bark</string>
     <string name="total_marfs">All-Time Total Marfs:</string>
+    <string name="banked_marfs">Banked Marfs:</string>
+    <string name="time">Time Since Reset:</string>
     <string name="shop">Upgrade Shop</string>
 
     <!-- SharedPreferences Strings -->

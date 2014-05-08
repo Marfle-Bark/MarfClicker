@@ -70,6 +70,8 @@
             android:orientation="horizontal"
             android:weightSum="10" >
 
+            <!-- Stats Labels -->
+
             <LinearLayout
                 android:id="@+id/stats_labels"
                 android:layout_width="0dp"
@@ -84,7 +86,15 @@
                     style="@style/text.label"
                     android:text="@string/total_marfs" >
                 </TextView>
+
+                <TextView
+                    android:id="@+id/stats_labels_banked"
+                    style="@style/text.label"
+                    android:text="@string/banked_marfs" >
+                </TextView>
             </LinearLayout>
+
+            <!-- Stats Data -->
 
             <LinearLayout
                 android:id="@+id/stats_values"
@@ -96,6 +106,12 @@
 
                 <TextView
                     android:id="@+id/stats_values_total"
+                    style="@style/text.data"
+                    android:text="@string/over9k" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/stats_values_banked"
                     style="@style/text.data"
                     android:text="@string/over9k" >
                 </TextView>
@@ -112,7 +128,6 @@
             android:text="@string/advert" >
         </TextView>
     </LinearLayout>
-
     <!-- The Shop -->
 
     <ListView
@@ -125,5 +140,4 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp" >
     </ListView>
-
 </android.support.v4.widget.DrawerLayout>

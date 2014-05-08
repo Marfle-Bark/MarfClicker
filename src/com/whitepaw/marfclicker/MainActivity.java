@@ -1,6 +1,7 @@
 package com.whitepaw.marfclicker;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,10 +25,12 @@ public class MainActivity extends Activity {
 	private ImageView mHusky = null;
 	private TextView mIncome = null;
 	private TextView mAdvert = null;
-	private TextView mTotal = null;
+	private TextView mTotal_value = null;
+	private TextView mBank_value = null;
 	private Button mShopButton = null;
-	private DrawerLayout mShopDrawer = null;
-	private ListView mShopContent = null;
+
+	// private DrawerLayout mShopDrawer = null;
+	// private ListView mShopContent = null;
 
 	private Context context = null;
 	private SharedPreferences prefs = null;
@@ -45,13 +48,16 @@ public class MainActivity extends Activity {
 		mIncome = (TextView) findViewById(R.id.income);
 		mAdvert = (TextView) findViewById(R.id.advert);
 		mShopButton = (Button) findViewById(R.id.shop);
-		mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mShopContent = (ListView) findViewById(R.id.shop_content);
-		
-		ArrayList<ShopItem> list = setupShopItems();
+		// mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		// mShopContent = (ListView) findViewById(R.id.shop_content);
+
+		// ListView listView = (ListView) findViewById(R.layout.shop_content);
+
+		// ArrayList<ShopItem> list = setupShopItems();
 
 		// handles for stats data column
-		mTotal = (TextView) findViewById(R.id.stats_values_total);
+		mTotal_value = (TextView) findViewById(R.id.stats_values_total);
+		mBank_value = (TextView) findViewById(R.id.stats_values_banked);
 
 		// other handles to important things
 		context = getApplicationContext();
@@ -125,7 +131,7 @@ public class MainActivity extends Activity {
 		loadData();
 	}
 
-	public void updateFields() {
+	public void debug_upgrades() {
 		// temporary way of increasing income
 		switch (MarfNumbers.getAlltime()) {
 		case 50:
@@ -144,10 +150,15 @@ public class MainActivity extends Activity {
 			MarfNumbers.increaseIncome(4);
 			break;
 		}
+	}
+
+	public void updateFields() {
+		debug_upgrades();
 
 		mBank.setText(MarfNumbers.getBankString());
 		mIncome.setText(MarfNumbers.getIncomeString());
-		mTotal.setText(String.valueOf(MarfNumbers.getAlltime()));
+		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
+		mBank_value.setText(String.valueOf(MarfNumbers.getBank()));
 	}
 
 	public void saveData() {

@@ -1,10 +1,13 @@
 package com.whitepaw.marfclicker;
 
+//import java.util.Calendar;
+
 public abstract class MarfNumbers {
 	
 	private static int alltime = 0;
 	private static int bank = 0;
 	private static int income = 0;
+//	private static Calendar start = Calendar.getInstance(); 
 
 	//int accessors
 	public static int getAlltime() {
