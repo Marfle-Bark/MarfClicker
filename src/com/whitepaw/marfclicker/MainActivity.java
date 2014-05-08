@@ -62,7 +62,6 @@ public class MainActivity extends Activity {
 		values = setupShopItems();
 		adapter = new MarfArrayAdapter(this, R.layout.shop_item, values);
 		mShopListView.setAdapter(adapter);
-//		mShopListView.setOnItemClickListener(new DrawerItemClickListener());
 
 		// handles for stats data column
 		mPuppies = (TextView) findViewById(R.id.stats_values_puppies);
@@ -102,6 +101,7 @@ public class MainActivity extends Activity {
 				case MotionEvent.ACTION_UP:
 					mHusky.setScaleX(1.0f);
 					mHusky.setScaleY(1.0f);
+					updateFields();
 					break;
 				}
 				return true;
@@ -112,16 +112,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				shortToast("Reset Desu");
-				mHusky.setScaleX(1.0f);
-				mHusky.setScaleY(1.0f);
-
-				for (int i = 0; i < values.length; i++) {
-					values[i].reset();
-				}
-
-				MarfNumbers.reset();
-				updateFields();
+				reset();
 				return true;
 			}
 		});
@@ -134,14 +125,6 @@ public class MainActivity extends Activity {
 				return false;
 			}
 		});
-
-//		mShopListView.setOnItemClickListener(new OnItemClickListener() {
-//			@Override
-//			public void onItemClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				shortToast("position: " + position);
-//			}
-//		});
 	}
 
 	@Override
@@ -167,6 +150,20 @@ public class MainActivity extends Activity {
 		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
 
 		adapter.notifyDataSetChanged();
+	}
+
+	public void reset() {
+		mHusky.setScaleX(1.0f);
+		mHusky.setScaleY(1.0f);
+		for (int i = 0; i < values.length; i++) {
+			values[i].reset();
+		}
+		MarfNumbers.reset();
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.clear();
+		editor.commit();
+		updateFields();
+		shortToast("Reset Desu");
 	}
 
 	public void saveData() {
@@ -195,6 +192,13 @@ public class MainActivity extends Activity {
 		int roboskisPrice = prefs.getInt(getString(R.string.roboskisPrice),
 				1000);
 
+		if (puppiesPrice < 10)
+			puppiesPrice = 10;
+		if (huskiesPrice < 100)
+			huskiesPrice = 100;
+		if (roboskisPrice < 1000)
+			roboskisPrice = 1000;
+
 		MarfNumbers.setAlltime(alltime);
 		MarfNumbers.setBank(bank);
 		MarfNumbers.setIncome(income);
@@ -218,17 +222,12 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.devname) {
 			longToast("MarfClicker ©2014 Ethan Busbee");
@@ -244,18 +243,4 @@ public class MainActivity extends Activity {
 		ShopItem arr[] = new ShopItem[] { puppy, husky, roboski };
 		return arr;
 	}
-
-//	private void selectItem(int position) {
-//		mShopListView.setItemChecked(position, true);
-//		shortToast("You touched position " + position);
-//	}
-
-//	private class DrawerItemClickListener implements
-//			ListView.OnItemClickListener {
-//		@Override
-//		public void onItemClick(AdapterView parent, View view, int position,
-//				long id) {
-//			selectItem(position);
-//		}
-//	}
 }

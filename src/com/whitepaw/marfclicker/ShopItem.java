@@ -3,7 +3,7 @@ package com.whitepaw.marfclicker;
 public final class ShopItem {
 	private final String description;
 	private int price;
-	private int initial_price;
+	private final int initial_price;
 	private final int boost;
 	private final classes classification;
 
@@ -17,8 +17,8 @@ public final class ShopItem {
 		switch (this.classification) {
 		case PUPPY:
 			this.description = "Puppy";
-			this.price = 1;
-			this.initial_price = 1;
+			this.price = 10;
+			this.initial_price = 10;
 			this.boost = 1;
 			break;
 		case HUSKY:
@@ -60,14 +60,10 @@ public final class ShopItem {
 
 	public void setPrice(int input) {
 		this.price = input;
-		this.initial_price = input;
 	}
 
 	public void buy() {
-		if(price == 1)
-			price = 2;
-		else
-			price *= 1.5;
+		price *= 1.5;
 	}
 
 	public void reset() {
