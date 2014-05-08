@@ -1,6 +1,5 @@
 package com.whitepaw.marfclicker;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -26,17 +25,18 @@ public class MainActivity extends Activity {
 	private ImageView mHusky = null;
 	private TextView mIncome = null;
 	private TextView mAdvert = null;
-	
+
 	private TextView mPuppies = null;
 	private TextView mHuskies = null;
 	private TextView mRoboskis = null;
 	private TextView mBank_value = null;
 	private TextView mTotal_value = null;
-	
+
 	private Button mShopButton = null;
 	private DrawerLayout mShopDrawer = null;
 	private ListView mShopListView = null;
 	private MarfArrayAdapter adapter = null;
+	private ShopItem values[] = null;
 
 	private Context context = null;
 	private SharedPreferences prefs = null;
@@ -58,11 +58,11 @@ public class MainActivity extends Activity {
 		mShopButton = (Button) findViewById(R.id.shop_button);
 		mShopDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mShopListView = (ListView) findViewById(R.id.shop_content_listview);
-		
-		ShopItem values[] = setupShopItems();
+
+		values = setupShopItems();
 		adapter = new MarfArrayAdapter(this, R.layout.shop_item, values);
 		mShopListView.setAdapter(adapter);
-		mShopListView.setOnItemClickListener(new DrawerItemClickListener());
+//		mShopListView.setOnItemClickListener(new DrawerItemClickListener());
 
 		// handles for stats data column
 		mPuppies = (TextView) findViewById(R.id.stats_values_puppies);
@@ -115,6 +115,11 @@ public class MainActivity extends Activity {
 				shortToast("Reset Desu");
 				mHusky.setScaleX(1.0f);
 				mHusky.setScaleY(1.0f);
+
+				for (int i = 0; i < values.length; i++) {
+					values[i].reset();
+				}
+
 				MarfNumbers.reset();
 				updateFields();
 				return true;
@@ -154,13 +159,13 @@ public class MainActivity extends Activity {
 	public void updateFields() {
 		mBank.setText(MarfNumbers.getBankString());
 		mIncome.setText(MarfNumbers.getIncomeString());
-		
+
 		mPuppies.setText(String.valueOf(MarfNumbers.getPuppies()));
 		mHuskies.setText(String.valueOf(MarfNumbers.getHuskies()));
 		mRoboskis.setText(String.valueOf(MarfNumbers.getRoboskis()));
 		mBank_value.setText(String.valueOf(MarfNumbers.getBank()));
 		mTotal_value.setText(String.valueOf(MarfNumbers.getAlltime()));
-		
+
 		adapter.notifyDataSetChanged();
 	}
 
@@ -169,6 +174,12 @@ public class MainActivity extends Activity {
 		editor.putInt(getString(R.string.alltime), MarfNumbers.getAlltime());
 		editor.putInt(getString(R.string.bank), MarfNumbers.getBank());
 		editor.putInt(getString(R.string.income), MarfNumbers.getIncome());
+		editor.putInt(getString(R.string.puppies), MarfNumbers.getPuppies());
+		editor.putInt(getString(R.string.puppiesPrice), 0);
+		editor.putInt(getString(R.string.huskies), MarfNumbers.getHuskies());
+		editor.putInt(getString(R.string.huskiesPrice), 0);
+		editor.putInt(getString(R.string.roboskis), MarfNumbers.getRoboskis());
+		editor.putInt(getString(R.string.roboskisPrice), 0);
 		editor.commit();
 	}
 
@@ -176,10 +187,23 @@ public class MainActivity extends Activity {
 		int alltime = prefs.getInt(getString(R.string.alltime), 0);
 		int bank = prefs.getInt(getString(R.string.bank), 0);
 		int income = prefs.getInt(getString(R.string.income), 0);
+		int puppies = prefs.getInt(getString(R.string.puppies), 0);
+		int puppiesPrice = prefs.getInt(getString(R.string.puppiesPrice), 10);
+		int huskies = prefs.getInt(getString(R.string.huskies), 0);
+		int huskiesPrice = prefs.getInt(getString(R.string.huskiesPrice), 100);
+		int roboskis = prefs.getInt(getString(R.string.roboskis), 0);
+		int roboskisPrice = prefs.getInt(getString(R.string.roboskisPrice),
+				1000);
 
 		MarfNumbers.setAlltime(alltime);
 		MarfNumbers.setBank(bank);
 		MarfNumbers.setIncome(income);
+		MarfNumbers.setPuppies(puppies);
+		values[0].setPrice(puppiesPrice);
+		MarfNumbers.setHuskies(huskies);
+		values[1].setPrice(huskiesPrice);
+		MarfNumbers.setRoboskis(roboskis);
+		values[2].setPrice(roboskisPrice);
 
 		updateFields();
 	}
@@ -214,24 +238,24 @@ public class MainActivity extends Activity {
 	}
 
 	public ShopItem[] setupShopItems() {
-		ShopItem puppy = new ShopItem("Puppy", 10, 1);
-		ShopItem husky = new ShopItem("Husky", 100, 3);
-		ShopItem roboski = new ShopItem("RoboDoge", 1000, 7);
-		ShopItem arr[] = new ShopItem[] {puppy, husky, roboski};
+		ShopItem puppy = new ShopItem(ShopItem.classes.PUPPY, 10, 1);
+		ShopItem husky = new ShopItem(ShopItem.classes.HUSKY, 100, 3);
+		ShopItem roboski = new ShopItem(ShopItem.classes.ROBOSKI, 1000, 7);
+		ShopItem arr[] = new ShopItem[] { puppy, husky, roboski };
 		return arr;
 	}
 
-	private void selectItem(int position) {
-		mShopListView.setItemChecked(position, true);
-		shortToast("You touched position " + position);
-	}
+//	private void selectItem(int position) {
+//		mShopListView.setItemChecked(position, true);
+//		shortToast("You touched position " + position);
+//	}
 
-	private class DrawerItemClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView parent, View view, int position,
-				long id) {
-			selectItem(position);
-		}
-	}
+//	private class DrawerItemClickListener implements
+//			ListView.OnItemClickListener {
+//		@Override
+//		public void onItemClick(AdapterView parent, View view, int position,
+//				long id) {
+//			selectItem(position);
+//		}
+//	}
 }

@@ -24,7 +24,7 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View row = convertView;
 
 		if (row == null) {
@@ -43,19 +43,20 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 
 		TextView price = (TextView) row.findViewById(R.id.shop_price);
 		price.setText("Cost: -" + values[position].getPrice());
-
-		if (MarfNumbers.getBank() >= values[position].getPrice()) {
-			buy.setEnabled(true); // default is false
-		}
 		
 		buy.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				
+				MarfNumbers.buySomething(values[position]);
 			}
 		});
 		
+		if (MarfNumbers.getBank() >= values[position].getPrice()) {
+			buy.setEnabled(true); // default is false
+		}
+		else
+			buy.setEnabled(false);
 		return row;
 	}
 }
