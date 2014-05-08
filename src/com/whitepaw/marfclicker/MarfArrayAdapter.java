@@ -48,8 +48,8 @@ public class MarfArrayAdapter extends ArrayAdapter<ShopItem> {
 			
 			@Override
 			public void onClick(View v) {
-				MarfNumbers.buySomething(values[position]);
-				
+				if(MarfNumbers.getBank() >= values[position].getPrice())
+					MarfNumbers.buySomething(values[position]);
 			}
 		});
 		
